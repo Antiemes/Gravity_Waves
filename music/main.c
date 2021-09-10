@@ -12,11 +12,12 @@
 #define GAP1 800
 #define GAP2 200
 
-#include "notes__.inc"
+#include "notes___.h"
 
 uint32_t dds1=0, dds2=0;
 uint32_t dds1_add=0, dds2_add=0;
 uint8_t i=0;
+uint8_t repeat = 0;
 uint32_t j=0;
 
 // -----------------------------
@@ -125,16 +126,28 @@ void dds()
   {
     j=0;
     i++;
+    if (pgm_read_word(&notes[i][0])==-2)
+    {
+      //Timer1.detachInterrupt();
+      if (repeat == 0) {
+          i-=64;
+          repeat = 1;
+      } else {
+          i++;
+          repeat = 0;
+      }
+    }
     if (pgm_read_word(&notes[i][0])==-1)
     {
       //Timer1.detachInterrupt();
       i=0;
     }
-
     uint32_t foo=pgm_read_word(&notes[i][0])*134213;
-    if (foo!=0)
+    if (foo > 0)
     {
-      dds1_add=foo;
+        dds1_add=foo;
+    } else if (foo < 0) {
+        dds1_add=0;
     }
     //if (dds1_add==0)
     //{
