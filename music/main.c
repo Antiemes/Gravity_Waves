@@ -16,7 +16,7 @@
 
 uint32_t dds1=0, dds2=0;
 uint32_t dds1_add=0, dds2_add=0;
-uint8_t i=0;
+uint32_t i=0;
 uint8_t repeat = 0;
 uint32_t j=0;
 
