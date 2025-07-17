@@ -3,7 +3,8 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <avr/wdt.h>
-#include "moon.h"
+#include "../gfx/moon2.h"
+//#include "moon.h"
 
 #define DEMOTEXT_LEN 250
 #define NOISE_LEN 50
@@ -207,7 +208,7 @@ void sineff()
 
 void greeteff()
 {
-  static const char PROGMEM greets[]="       Greetings to LFT - Musk - Adt - adj. - TGD - Umlaut Design - UFDD - Dilemma - Desire - Rebels - Cybernetic Genetics - Singular Crew                             ";
+  static const char PROGMEM greets[]="       Greetings to adj. - TGD - Umlaut Design - UFDD - Dilemma - Desire - Rebels - Cybernetic Genetics - and HekkElek who saved my ass...                          ";
   static char gr[2];
   static int8_t groffs=0;
   static uint16_t grstart=0, grend=0;
@@ -474,7 +475,7 @@ void makers()
   uint8_t bits;
   int16_t q;
   static const char* titles[3]={"CODE", "MUSIC", "GRAPHICS"};
-  static const char* names[3]={"Antiemes", "Blueghost", "Leon"};
+  static const char* names[3]={"Antiemes", "Helguli", "Blueghost"};
   static uint8_t state=0;
   static uint8_t hide1=60, hide2=60, wait=0;
   static uint8_t member=0;
@@ -654,7 +655,7 @@ void loop(void)
   {
     greeteff();
   }
-  if (fct>=DEMOTEXT_LEN+MAKERS_LEN+PLASMA_LEN+NOISE_LEN && fct<DEMOTEXT_LEN+MAKERS_LEN+PLASMA_LEN+SIN_LEN+NOISE_LEN)
+  if (fct>=DEMOTEXT_LEN+MAKERS_LEN+PLASMA_LEN+NOISE_LEN && fct<DEMOTEXT_LEN+MAKERS_LEN+PLASMA_LEN+SIN_LEN+NOISE_LEN+1000)
   {
     sineff();
   }
